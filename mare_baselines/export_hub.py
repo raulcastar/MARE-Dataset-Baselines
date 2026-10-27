@@ -42,7 +42,7 @@ Segmentation and depth models trained on the synthetic
 [MARE Lunar Rover Dataset](https://huggingface.co/datasets/{dataset}), recorded in the
 [MARE simulator](https://github.com/raulcastar/MARE-Lunar-Simulator). They are the baselines of the
 [MARE paper](https://arxiv.org/abs/2610.28465); the training and evaluation code is in
-[Training_Lunar_Dataset](https://github.com/raulcastar/Training_Lunar_Dataset).
+[MARE-Dataset-Baselines](https://github.com/raulcastar/MARE-Dataset-Baselines).
 
 All models were trained on maps 000-005, selected on map 006 and scored on map 007, terrain never seen
 in training. Scores are at the dataset's native resolution.

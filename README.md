@@ -1,4 +1,4 @@
-# Training_Lunar_Dataset
+# MARE-Dataset-Baselines
 
 Baseline models for the [MARE Lunar Rover Dataset](https://huggingface.co/datasets/raulcastar/mare-lunar-rover-dataset):
 synthetic lunar rover camera frames with pixel-accurate depth, object and shadow
