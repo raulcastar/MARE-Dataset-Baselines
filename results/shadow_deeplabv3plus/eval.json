@@ -1,0 +1,358 @@
+{
+  "task": "shadow",
+  "model": "DeepLabV3+, ResNet-50 encoder (ImageNet)",
+  "arch": "deeplabv3plus",
+  "split": "test",
+  "resolution": "native (label size); network input 512x384",
+  "samples": 585,
+  "samples_sha256": "9c0a2f9173bf7d10d51273a2e89936bdc8c902d3834e62f8d36bbd8d1753b239",
+  "scores": {
+    "mIoU": 0.8042993851355721,
+    "pixel_accuracy": 0.9708613003027066,
+    "classes": {
+      "sky": {
+        "iou": 0.9957951642795582,
+        "precision": 0.997570005307002,
+        "recall": 0.9982165094506384,
+        "pixels": 43192267
+      },
+      "sunlit_ground": {
+        "iou": 0.9613136437939406,
+        "precision": 0.984371661002455,
+        "recall": 0.9762128575281606,
+        "pixels": 119056461
+      },
+      "shadowed_ground": {
+        "iou": 0.5188567307817255,
+        "precision": 0.657748862084297,
+        "recall": 0.7107435702772358,
+        "pixels": 5786447
+      },
+      "sunlit_object": {
+        "iou": 0.6712440058540379,
+        "precision": 0.7557958261770512,
+        "recall": 0.8571458732304081,
+        "pixels": 2747173
+      },
+      "shadowed_object": {
+        "iou": 0.6955858894857216,
+        "precision": 0.80177137958444,
+        "recall": 0.8400547166459407,
+        "pixels": 1407250
+      },
+      "rover_shadow": {
+        "iou": 0.9830008766184483,
+        "precision": 0.9877000736866202,
+        "recall": 0.9951833204340848,
+        "pixels": 7522402
+      }
+    },
+    "confusion_matrix": [
+      [
+        43115234,
+        31996,
+        9318,
+        24347,
+        11372,
+        0
+      ],
+      [
+        62808,
+        116224448,
+        2028290,
+        646695,
+        37886,
+        56334
+      ],
+      [
+        11566,
+        1457591,
+        4112680,
+        5518,
+        163814,
+        35278
+      ],
+      [
+        16666,
+        290523,
+        6171,
+        2354728,
+        78677,
+        408
+      ],
+      [
+        13985,
+        43493,
+        82558,
+        83841,
+        1182167,
+        1206
+      ],
+      [
+        0,
+        21630,
+        13643,
+        432,
+        528,
+        7486169
+      ]
+    ],
+    "confusion_matrix_order": [
+      "sky",
+      "sunlit_ground",
+      "shadowed_ground",
+      "sunlit_object",
+      "shadowed_object",
+      "rover_shadow"
+    ]
+  },
+  "by_sun_elevation": {
+    "0-10 deg": {
+      "mIoU": 0.7743109064591076,
+      "pixel_accuracy": 0.9570116531207997,
+      "classes": {
+        "sky": {
+          "iou": 0.9944642653278256,
+          "precision": 0.9961332416961632,
+          "recall": 0.9983180522635862,
+          "pixels": 17442278
+        },
+        "sunlit_ground": {
+          "iou": 0.9388765282628707,
+          "precision": 0.9769104079590356,
+          "recall": 0.9601836261320715,
+          "pixels": 48591341
+        },
+        "shadowed_ground": {
+          "iou": 0.5193382370865125,
+          "precision": 0.6418806923326424,
+          "recall": 0.7312050306181931,
+          "pixels": 3729482
+        },
+        "sunlit_object": {
+          "iou": 0.6002534044980965,
+          "precision": 0.6750808057184663,
+          "recall": 0.8441248283586636,
+          "pixels": 1066905
+        },
+        "shadowed_object": {
+          "iou": 0.6095920434387655,
+          "precision": 0.7869416552288762,
+          "recall": 0.7300873489265688,
+          "pixels": 447630
+        },
+        "rover_shadow": {
+          "iou": 0.9833409601405747,
+          "precision": 0.9876007502202964,
+          "recall": 0.9956328123026167,
+          "pixels": 4907964
+        }
+      },
+      "confusion_matrix": [
+        [
+          17412941,
+          9636,
+          6199,
+          11907,
+          1595,
+          0
+        ],
+        [
+          43980,
+          46656610,
+          1443824,
+          389896,
+          20290,
+          36741
+        ],
+        [
+          8025,
+          928963,
+          2727016,
+          2429,
+          38440,
+          24609
+        ],
+        [
+          9238,
+          124371,
+          4541,
+          900601,
+          28154,
+          0
+        ],
+        [
+          6350,
+          28574,
+          56677,
+          29220,
+          326809,
+          0
+        ],
+        [
+          0,
+          11200,
+          10221,
+          11,
+          2,
+          4886530
+        ]
+      ],
+      "confusion_matrix_order": [
+        "sky",
+        "sunlit_ground",
+        "shadowed_ground",
+        "sunlit_object",
+        "shadowed_object",
+        "rover_shadow"
+      ]
+    },
+    "10-20 deg": {
+      "mIoU": 0.8222424539652752,
+      "pixel_accuracy": 0.9810533255285608,
+      "classes": {
+        "sky": {
+          "iou": 0.9966988556164651,
+          "precision": 0.9985457498089043,
+          "recall": 0.9981477273640778,
+          "pixels": 25749989
+        },
+        "sunlit_ground": {
+          "iou": 0.9769719693860245,
+          "precision": 0.9894398300835665,
+          "recall": 0.9872662957219118,
+          "pixels": 70465120
+        },
+        "shadowed_ground": {
+          "iou": 0.5179117191176322,
+          "precision": 0.6913863112232322,
+          "recall": 0.6736449088827472,
+          "pixels": 2056965
+        },
+        "sunlit_object": {
+          "iou": 0.7242974081980915,
+          "precision": 0.816238814884336,
+          "recall": 0.8654137316190036,
+          "pixels": 1680268
+        },
+        "shadowed_object": {
+          "iou": 0.7352125121194826,
+          "precision": 0.8075860545303138,
+          "recall": 0.8913507430024384,
+          "pixels": 959620
+        },
+        "rover_shadow": {
+          "iou": 0.9823622593539543,
+          "precision": 0.9878868256498633,
+          "recall": 0.9943395100591408,
+          "pixels": 2614438
+        }
+      },
+      "confusion_matrix": [
+        [
+          25702293,
+          22360,
+          3119,
+          12440,
+          9777,
+          0
+        ],
+        [
+          18828,
+          69567838,
+          584466,
+          256799,
+          17596,
+          19593
+        ],
+        [
+          3541,
+          528628,
+          1385664,
+          3089,
+          125374,
+          10669
+        ],
+        [
+          7428,
+          166152,
+          1630,
+          1454127,
+          50523,
+          408
+        ],
+        [
+          7635,
+          14919,
+          25881,
+          54621,
+          855358,
+          1206
+        ],
+        [
+          0,
+          10430,
+          3422,
+          421,
+          526,
+          2599639
+        ]
+      ],
+      "confusion_matrix_order": [
+        "sky",
+        "sunlit_ground",
+        "shadowed_ground",
+        "sunlit_object",
+        "shadowed_object",
+        "rover_shadow"
+      ]
+    }
+  },
+  "training": {
+    "args": {
+      "task": "shadow",
+      "data": "/data",
+      "out": "/results",
+      "epochs": 30,
+      "batch": 8,
+      "lr": 0.0003,
+      "max_minutes": 120.0,
+      "limit": null,
+      "seed": 0,
+      "arch": "deeplabv3plus",
+      "force": false
+    },
+    "epochs_run": 30,
+    "best_validation": 0.7744365254392617
+  },
+  "provenance": {
+    "code_commit": "d98af9d4dcc5f33987b08d3b139754981e597820",
+    "dataset_revision": "77f8fcd43eee3c36c945796857c739f2b93936b3",
+    "pretrained_snapshots": {
+      "smp-hub/resnet50.imagenet": [
+        "00cb74e366966d59cd9a35af57e618af9f88efe9"
+      ],
+      "smp-hub/resnet34.imagenet": [
+        "7a57b34f723329ff020b3f8bc41771163c519d0c"
+      ],
+      "smp-hub/mit_b2.imagenet": [
+        "868ab6f13871dcf8c3d9f90ee4519403475b65ef"
+      ],
+      "depth-anything/Depth-Anything-V2-Small-hf": [
+        "5426e4f0f36572d16453bbda7a8389317b1bef99"
+      ]
+    },
+    "environment": {
+      "python": "3.11.13",
+      "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+      "torch": "2.7.1+cu128",
+      "cuda": "12.8",
+      "cudnn": 90701,
+      "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "segmentation_models_pytorch": "0.5.0",
+      "timm": "1.0.30",
+      "transformers": "5.20.2",
+      "numpy": "2.2.6"
+    }
+  }
+}

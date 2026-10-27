@@ -82,7 +82,7 @@ def eval_seg(run_dir, metrics, root, split, device):
     task, arch = metrics["task"], metrics.get("arch", "unet")
     cfg = seg.TASKS[task]
     meta = data.episodes(root, split)[0][1]
-    if task == "shadow":
+    if task.endswith("shadow"):
         names = [meta["shadow_classes"][str(k)] for k in range(cfg["classes"])]
     else:
         names = [c["name"] for c in sorted(meta["object_classes"], key=lambda c: c["id"])][:cfg["classes"]]

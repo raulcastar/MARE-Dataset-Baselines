@@ -9,6 +9,8 @@ Tasks:
     shadow       rgb_central -> shadow (6 shadow classes)
     spad_object  spad        -> spad_object (the central labels on the SPAD grid)
     rear_object  rear_rgb    -> rear_object (the rear camera, which sees the wheel tracks)
+    rear_shadow  rear_rgb    -> rear_shadow
+    spad_shadow  spad        -> spad_shadow (255 outside the central camera is ignored)
 
 Trains on the train maps, keeps the epoch with the best validation mIoU, and
 reports per-class IoU on the test map (never seen in training) to
@@ -33,6 +35,8 @@ TASKS = {
     "shadow": {"input": "rgb_central", "label": "shadow", "size": (512, 384), "classes": 6, "ignore": []},
     "spad_object": {"input": "spad", "label": "spad_object", "size": (256, 256), "classes": 11, "ignore": [0]},
     "rear_object": {"input": "rear_rgb", "label": "rear_object", "size": (512, 384), "classes": 11, "ignore": [0]},
+    "rear_shadow": {"input": "rear_rgb", "label": "rear_shadow", "size": (512, 384), "classes": 6, "ignore": []},
+    "spad_shadow": {"input": "spad", "label": "spad_shadow", "size": (256, 256), "classes": 6, "ignore": []},
 }
 ARCHS = {  # name -> (description, constructor of a model with n classes)
     "unet": ("U-Net, ResNet-34 encoder (ImageNet)",
@@ -136,7 +140,7 @@ def evaluate(model, ds, n, device, bins=False):
 def palette(task, legend):
     lut = np.zeros((256, 3), np.uint8)
     lut[data.IGNORE] = (60, 60, 60)
-    if task == "shadow":
+    if task.endswith("shadow"):
         for k, rgb in SHADOW_COLOURS.items():
             lut[k] = rgb
     else:
@@ -193,7 +197,7 @@ def main():
     test = Cached(args.data, "test", args.task, args.limit and max(args.limit // 4, 8))
     meta = data.episodes(args.data, "test")[0][1]
     legend = meta["object_classes"]
-    if args.task == "shadow":
+    if args.task.endswith("shadow"):
         names = [meta["shadow_classes"][str(k)] for k in range(cfg["classes"])]
     else:
         names = [c["name"] for c in sorted(legend, key=lambda c: c["id"])][:cfg["classes"]]

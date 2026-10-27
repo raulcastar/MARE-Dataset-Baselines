@@ -1,0 +1,124 @@
+{
+  "task": "monocular depth",
+  "model": "depth-anything/Depth-Anything-V2-Small-hf",
+  "split": "test",
+  "resolution": "native 640x480; network input 518x392",
+  "depth_range_m": [
+    0.5,
+    80.0
+  ],
+  "samples": 585,
+  "samples_sha256": "9c0a2f9173bf7d10d51273a2e89936bdc8c902d3834e62f8d36bbd8d1753b239",
+  "zero_shot_aligned": {
+    "mean_over_images": {
+      "abs_rel": 0.17672836094394198,
+      "rmse": 12.611922549182534,
+      "delta1": 0.8405045128520806
+    },
+    "pooled_over_pixels": {
+      "abs_rel": 0.1774282455444336,
+      "rmse": 15.44432544708252,
+      "delta1": 0.8415762668512361
+    }
+  },
+  "fine_tuned_metric": {
+    "mean_over_images": {
+      "abs_rel": 0.027123327376559758,
+      "rmse": 1.6259529649447173,
+      "delta1": 0.9844434608375128
+    },
+    "pooled_over_pixels": {
+      "abs_rel": 0.02699536830186844,
+      "rmse": 1.742640495300293,
+      "delta1": 0.9846779490225321
+    }
+  },
+  "fine_tuned_aligned": {
+    "mean_over_images": {
+      "abs_rel": 0.029336106406254135,
+      "rmse": 3.835082009727629,
+      "delta1": 0.973924306236572
+    },
+    "pooled_over_pixels": {
+      "abs_rel": 0.029428787529468536,
+      "rmse": 5.184878826141357,
+      "delta1": 0.9738745795896361
+    }
+  },
+  "fine_tuned_metric_by_distance": {
+    "0.5-5 m": {
+      "abs_rel": 0.01626385562121868,
+      "rmse": 0.11982079595327377,
+      "delta1": 0.9976002826659685,
+      "pixel_share": 0.8875131973951605
+    },
+    "5-10 m": {
+      "abs_rel": 0.07890826463699341,
+      "rmse": 0.9472383856773376,
+      "delta1": 0.9544926251292638,
+      "pixel_share": 0.05563207779070655
+    },
+    "10-20 m": {
+      "abs_rel": 0.11704952269792557,
+      "rmse": 2.523733615875244,
+      "delta1": 0.8949967496425154,
+      "pixel_share": 0.026948842379063424
+    },
+    "20-40 m": {
+      "abs_rel": 0.16420407593250275,
+      "rmse": 6.6083760261535645,
+      "delta1": 0.757493394828095,
+      "pixel_share": 0.01730564604513308
+    },
+    "40-80 m": {
+      "abs_rel": 0.17262767255306244,
+      "rmse": 12.745287895202637,
+      "delta1": 0.7115807413220575,
+      "pixel_share": 0.012600236389936379
+    }
+  },
+  "training": {
+    "args": {
+      "data": "/data",
+      "out": "/results",
+      "epochs": 10,
+      "batch": 4,
+      "lr": 5e-05,
+      "max_minutes": 90.0,
+      "limit": null,
+      "seed": 0
+    },
+    "epochs_run": 10,
+    "best_validation": 0.022528398761247792
+  },
+  "provenance": {
+    "code_commit": "d98af9d4dcc5f33987b08d3b139754981e597820",
+    "dataset_revision": "77f8fcd43eee3c36c945796857c739f2b93936b3",
+    "pretrained_snapshots": {
+      "smp-hub/resnet50.imagenet": [
+        "00cb74e366966d59cd9a35af57e618af9f88efe9"
+      ],
+      "smp-hub/resnet34.imagenet": [
+        "7a57b34f723329ff020b3f8bc41771163c519d0c"
+      ],
+      "smp-hub/mit_b2.imagenet": [
+        "868ab6f13871dcf8c3d9f90ee4519403475b65ef"
+      ],
+      "depth-anything/Depth-Anything-V2-Small-hf": [
+        "5426e4f0f36572d16453bbda7a8389317b1bef99"
+      ]
+    },
+    "environment": {
+      "python": "3.11.13",
+      "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+      "torch": "2.7.1+cu128",
+      "cuda": "12.8",
+      "cudnn": 90701,
+      "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "segmentation_models_pytorch": "0.5.0",
+      "timm": "1.0.30",
+      "transformers": "5.20.2",
+      "numpy": "2.2.6"
+    }
+  }
+}

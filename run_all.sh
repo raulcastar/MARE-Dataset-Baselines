@@ -11,4 +11,6 @@ run mare_baselines.seg --task object --epochs 30 --max-minutes 90
 run mare_baselines.seg --task shadow --epochs 30 --max-minutes 90
 run mare_baselines.seg --task spad_object --epochs 40 --max-minutes 60
 run mare_baselines.seg --task rear_object --epochs 30 --max-minutes 90
+run mare_baselines.seg --task rear_shadow --epochs 30 --max-minutes 90
+run mare_baselines.seg --task spad_shadow --epochs 40 --max-minutes 60
 run mare_baselines.depth --epochs 10 --max-minutes 90

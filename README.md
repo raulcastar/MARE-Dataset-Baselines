@@ -11,6 +11,7 @@ labels, recorded in the [MARE simulator](https://github.com/raulcastar/MARE-Luna
 | Shadow segmentation (6 classes) | `rgb_central` → `shadow` | U-Net, ResNet-34 encoder (ImageNet) | `mare_baselines.seg --task shadow` |
 | Object segmentation on the SPAD camera | `spad` → `spad_object` | U-Net, ResNet-34 encoder (ImageNet) | `mare_baselines.seg --task spad_object` |
 | Object segmentation on the rear camera | `rear_rgb` → `rear_object` | U-Net, ResNet-34 encoder (ImageNet) | `mare_baselines.seg --task rear_object` |
+| Shadow segmentation on the rear and SPAD cameras | `rear_rgb` → `rear_shadow`, `spad` → `spad_shadow` | U-Net, ResNet-34 encoder (ImageNet) | `mare_baselines.seg --task rear_shadow` / `spad_shadow` |
 | Model comparison on objects and shadows | as above | DeepLabV3+ (ResNet-50), SegFormer-B2 | `mare_baselines.seg --arch deeplabv3plus` / `segformer` |
 | Monocular depth | `rgb_central` → `depth_m` | Depth Anything V2-Small, zero-shot and fine-tuned | `mare_baselines.depth` |
 
