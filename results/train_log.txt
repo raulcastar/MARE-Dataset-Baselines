@@ -1,0 +1,110 @@
+ Image mare-baselines Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 676B done
+#1 DONE 0.0s
+#2 [internal] load build definition from Dockerfile
+#2 DONE 0.0s
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 372B 0.0s done
+#2 DONE 0.0s
+#3 [internal] load metadata for docker.io/pytorch/pytorch:2.7.1-cuda12.8-cudnn9-runtime
+#3 DONE 0.6s
+#4 [internal] load .dockerignore
+#4 transferring context: 2B 0.0s done
+#4 DONE 0.0s
+#5 [1/5] FROM docker.io/pytorch/pytorch:2.7.1-cuda12.8-cudnn9-runtime@sha256:c16f4c749e2d9e96878875cdf6cc45cddda1d1a36fddd371dd6f2360f1b6e2a2
+#5 resolve docker.io/pytorch/pytorch:2.7.1-cuda12.8-cudnn9-runtime@sha256:c16f4c749e2d9e96878875cdf6cc45cddda1d1a36fddd371dd6f2360f1b6e2a2 0.0s done
+#5 DONE 0.0s
+#6 [internal] load build context
+#6 transferring context: 289B 0.0s done
+#6 DONE 0.0s
+#7 [2/5] WORKDIR /workspace
+#7 CACHED
+#8 [3/5] COPY requirements.txt .
+#8 CACHED
+#9 [4/5] RUN pip install --no-cache-dir -r requirements.txt
+#9 CACHED
+#10 [5/5] COPY mare_baselines ./mare_baselines
+#10 CACHED
+#11 exporting to image
+#11 exporting layers done
+#11 exporting manifest sha256:31ac55bbf42105b9b4f981b43cc09c6d4b233854ee334e04a63df409af092b32 0.0s done
+#11 exporting config sha256:c9a9b8f3b6299709c9441d6f5c05a54a5aab9d17ed698982fc95fb4db3860b13
+#11 exporting config sha256:c9a9b8f3b6299709c9441d6f5c05a54a5aab9d17ed698982fc95fb4db3860b13 0.0s done
+#11 exporting attestation manifest sha256:755af3b3835540faea55e373c0b2d8259035e76dd5afd70d84d30a2c42ca6a9b 0.0s done
+#11 exporting manifest list sha256:18ce6ca870b6bf6bc33c4826279279725809ed5ec416f551660058c7a8acc8e9 0.0s done
+#11 naming to docker.io/library/mare-baselines:latest
+#11 naming to docker.io/library/mare-baselines:latest done
+#11 unpacking to docker.io/library/mare-baselines:latest 0.0s done
+#11 DONE 0.2s
+#12 resolving provenance for metadata file
+#12 DONE 0.0s
+ Image mare-baselines Built 
+ Container training_lunar_dataset-train-run-98a5c34152a3 Creating 
+ Container training_lunar_dataset-train-run-98a5c34152a3 Created 
+class weights: {'unlabeled': 0.0, 'sky': 0.23, 'rover': 0.0, 'sun': 10.0, 'sun_glare': 10.0, 'landscape': 0.14, 'crater': 1.31, 'crater_rim': 0.74, 'wheel_track': 4.02, 'boulder': 1.0, 'small_rock': 0.81}
+{
+  "test_mIoU": 0.600357369032698,
+  "iou": {
+    "sky": 0.9944771527787534,
+    "sun": 0.7814345991561181,
+    "sun_glare": 0.8472540736270369,
+    "landscape": 0.9032379280526751,
+    "crater": 0.4610694532858241,
+    "crater_rim": 0.21223607578500453,
+    "wheel_track": 0.1386142799340536,
+    "boulder": 0.4317957479613603,
+    "small_rock": 0.6330970107134559
+  }
+}
+ Container training_lunar_dataset-train-run-c3dc7490f641 Creating 
+ Container training_lunar_dataset-train-run-c3dc7490f641 Created 
+class weights: {'sky': 0.38, 'sunlit_ground': 0.23, 'shadowed_ground': 0.84, 'sunlit_object': 1.3, 'shadowed_object': 1.69, 'rover_shadow': 1.3}
+{
+  "test_mIoU": 0.8623331616086487,
+  "iou": {
+    "sky": 0.996664477160089,
+    "sunlit_ground": 0.9794403077560015,
+    "shadowed_ground": 0.729919143816006,
+    "sunlit_object": 0.7267378218105595,
+    "shadowed_object": 0.7526777392029415,
+    "rover_shadow": 0.9885594799062948
+  }
+}
+ Container training_lunar_dataset-train-run-25da1c8a0b7f Creating 
+ Container training_lunar_dataset-train-run-25da1c8a0b7f Created 
+class weights: {'unlabeled': 0.0, 'sky': 0.23, 'rover': 0.0, 'sun': 10.0, 'sun_glare': 10.0, 'landscape': 0.14, 'crater': 1.32, 'crater_rim': 0.74, 'wheel_track': 3.98, 'boulder': 1.0, 'small_rock': 0.81}
+{
+  "test_mIoU": 0.48371278756353586,
+  "iou": {
+    "sky": 0.988713192179688,
+    "sun": 0.4720812182741117,
+    "sun_glare": 0.6856502242152467,
+    "landscape": 0.8836007489417919,
+    "crater": 0.2912116765115797,
+    "crater_rim": 0.16976871643099858,
+    "wheel_track": 0.09991881719107482,
+    "boulder": 0.3316184433337931,
+    "small_rock": 0.4308520509935382
+  }
+}
+ Container training_lunar_dataset-train-run-aa66c5613d54 Creating 
+ Container training_lunar_dataset-train-run-aa66c5613d54 Created 
+zero-shot (aligned): {'abs_rel': 0.1769339301551764, 'rmse': 12.614879424449725, 'delta1': 0.8402631895025205}
+{
+  "zero_shot_aligned": {
+    "abs_rel": 0.1769339301551764,
+    "rmse": 12.614879424449725,
+    "delta1": 0.8402631895025205
+  },
+  "fine_tuned_metric": {
+    "abs_rel": 0.02738043351783457,
+    "rmse": 1.6283331569443402,
+    "delta1": 0.9843207108899601
+  },
+  "fine_tuned_aligned": {
+    "abs_rel": 0.02959233636243476,
+    "rmse": 3.8302755516563725,
+    "delta1": 0.9739141079303031
+  }
+}

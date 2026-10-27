@@ -1,0 +1,22 @@
+# Baselines for the MARE Lunar Rover Dataset, on an NVIDIA GPU.
+#
+#   MARE_DATA=/path/to/dataset docker compose run --rm train mare_baselines.seg --task object
+#
+# MARE_DATA is the dataset folder (with samples/): the generator's output, or the
+# Hugging Face download after `mare_baselines.unpack_hf`.
+services:
+  train:
+    build: .
+    image: mare-baselines
+    gpus: all
+    shm_size: 8gb                     # data-loader workers share batches through /dev/shm
+    environment:                      # recorded in eval.json (evaluate.sh sets them)
+      MARE_GIT_COMMIT: ${MARE_GIT_COMMIT:-}
+      MARE_DATASET_REVISION: ${MARE_DATASET_REVISION:-}
+    volumes:
+      - ${MARE_DATA:?set MARE_DATA to the dataset folder}:/data:ro
+      - ./results:/results
+      - model-cache:/root/.cache      # pretrained weights, downloaded once
+
+volumes:
+  model-cache:
