@@ -17,6 +17,7 @@ import os
 import numpy as np
 import torch
 from PIL import Image
+from safetensors.torch import load_file
 
 from . import data, seg
 
@@ -35,20 +36,26 @@ def crop_to(img, size):
 @torch.no_grad()
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--run", required=True, help="run folder in --results, e.g. object or shadow_segformer")
+    parser.add_argument("--run", required=True, help="run folder in --results, e.g. object or shadow_segformer "
+                                                     "(a training run or a downloaded checkpoint)")
     parser.add_argument("--images", default="/data", help="folder of images (searched recursively)")
     parser.add_argument("--results", default="/results")
     parser.add_argument("--out", default="/results/predictions")
     args = parser.parse_args()
 
     run_dir = os.path.join(args.results, args.run)
-    metrics = json.load(open(os.path.join(run_dir, "metrics.json")))
+    # A training run (metrics.json, best.pt) or a run downloaded from the Hub (config.json, model.safetensors).
+    trained = os.path.isfile(os.path.join(run_dir, "best.pt"))
+    metrics = json.load(open(os.path.join(run_dir, "metrics.json" if trained else "config.json")))
     task, arch = metrics["task"], metrics.get("arch", "unet")
     cfg = seg.TASKS[task]
     model = {"unet": lambda: seg.smp.Unet("resnet34", encoder_weights=None, classes=cfg["classes"]),
              "deeplabv3plus": lambda: seg.smp.DeepLabV3Plus("resnet50", encoder_weights=None, classes=cfg["classes"]),
              "segformer": lambda: seg.smp.Segformer("mit_b2", encoder_weights=None, classes=cfg["classes"])}[arch]()
-    model.load_state_dict(torch.load(os.path.join(run_dir, "best.pt"), map_location="cpu"))
+    if trained:
+        model.load_state_dict(torch.load(os.path.join(run_dir, "best.pt"), map_location="cpu"))
+    else:
+        model.load_state_dict(load_file(os.path.join(run_dir, "model.safetensors")))
     model.to("cuda").eval()
 
     out = os.path.join(args.out, args.run)

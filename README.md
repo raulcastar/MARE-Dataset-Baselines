@@ -24,6 +24,20 @@ it never saw. Results, with per-class scores and example predictions, are in
 
 *Filled in from `results/*/metrics.json` once the runs finish.*
 
+## Trained checkpoints
+
+The trained models are on Hugging Face at
+[raulcastar/mare-lunar-baselines](https://huggingface.co/raulcastar/mare-lunar-baselines), one folder per run
+with the weights (`model.safetensors`) and their configuration and test scores (`config.json`). To run one on
+your own images:
+
+```bash
+hf download raulcastar/mare-lunar-baselines --local-dir results/hub
+MARE_DATA=/path/to/images docker compose run --rm train mare_baselines.predict --run object --results /results/hub
+```
+
+`mare_baselines.export_hub` produces that folder from the training results.
+
 ## Running them
 
 Needs Docker with GPU access (NVIDIA Container Toolkit) and the dataset.
