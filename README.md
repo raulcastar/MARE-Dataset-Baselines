@@ -22,7 +22,53 @@ it never saw. Results, with per-class scores and example predictions, are in
 
 ## Results
 
-*Filled in from `results/*/metrics.json` once the runs finish.*
+Test map (map_007, 585 frames, sun elevations of 8°, 16° and 20°), at the
+dataset's native resolution, from `results/*/eval.json`.
+
+**Segmentation, per-class IoU.** Best front-camera model in bold.
+
+| Class | U-Net | DeepLabV3+ | SegFormer-B2 | Rear (U-Net) | SPAD (U-Net) |
+|---|---|---|---|---|---|
+| *Objects* | | | | | |
+| Sky | **0.99** | **0.99** | **0.99** | 0.99 | 0.99 |
+| Landscape | **0.90** | **0.90** | **0.90** | 0.88 | 0.88 |
+| Small rock | **0.63** | 0.60 | 0.61 | 0.64 | 0.43 |
+| Boulder | 0.43 | 0.39 | **0.49** | 0.54 | 0.33 |
+| Crater | 0.46 | 0.46 | **0.48** | 0.25 | 0.29 |
+| Crater rim | 0.21 | 0.19 | **0.23** | 0.15 | 0.17 |
+| Wheel track | 0.14 | 0.15 | **0.16** | 0.94 | 0.10 |
+| Sun | **0.75** | 0.65 | 0.58 | 0.74 | 0.47 |
+| Sun glare | **0.84** | 0.81 | 0.82 | 0.86 | 0.69 |
+| **mIoU** | **0.60** | 0.57 | 0.59 | 0.67 | 0.48 |
+| mIoU, sun 0–10° | **0.57** | 0.54 | 0.56 | 0.65 | 0.42 |
+| mIoU, sun 10–20° | **0.68** | 0.66 | 0.66 | 0.68 | 0.57 |
+| *Shadows* | | | | | |
+| Sky | **1.00** | **1.00** | **1.00** | 0.99 | 0.99 |
+| Sunlit ground | **0.98** | 0.96 | 0.96 | 0.98 | 0.93 |
+| Shadowed ground | **0.71** | 0.52 | 0.51 | 0.61 | 0.33 |
+| Sunlit object | **0.72** | 0.67 | 0.66 | 0.76 | 0.48 |
+| Shadowed object | **0.74** | 0.70 | 0.70 | 0.76 | 0.56 |
+| Rover shadow | **0.99** | 0.98 | 0.98 | 0.98 | 0.97 |
+| **mIoU** | **0.85** | 0.80 | 0.80 | 0.85 | 0.71 |
+| mIoU, sun 0–10° | **0.82** | 0.77 | 0.77 | 0.82 | 0.67 |
+| mIoU, sun 10–20° | **0.87** | 0.82 | 0.82 | 0.87 | 0.73 |
+
+**Monocular depth** (Depth Anything V2-Small, ground truth 0.5–80 m):
+
+| Setting | AbsRel | RMSE | δ < 1.25 |
+|---|---|---|---|
+| Zero-shot, scale and shift aligned per image | 0.177 | 12.61 m | 0.841 |
+| Fine-tuned, metric | **0.027** | **1.63 m** | **0.984** |
+| Fine-tuned, aligned | 0.029 | 3.84 m | 0.974 |
+
+The fine-tuned error grows with distance: AbsRel 0.016 below 5 m (89 % of the
+pixels), 0.079 at 5–10 m, 0.117 at 10–20 m, 0.164 at 20–40 m and 0.173 at
+40–80 m.
+
+**Real images.** `results/predictions_spice_hl3/` holds the predictions of the
+object and shadow models on 84 frames of
+[SPICE-HL3](https://zenodo.org/records/13970078), applied without adaptation;
+there are no labels for them, so they are a qualitative check.
 
 ## Trained checkpoints
 
@@ -108,6 +154,13 @@ Without Docker: `pip install torch torchvision` (CUDA build) and
   it predicts metric depth (10 / output) with a scale-invariant log loss, scored
   as it is (metric) and aligned. Metrics: AbsRel, RMSE, δ < 1.25.
 - Seeds are fixed (`--seed`), but GPU training is not bit-exact between runs.
+
+## License
+
+The code is released under the [MIT License](LICENSE). The dataset is CC BY 4.0. The trained
+U-Net, DeepLabV3+ and depth weights are CC BY 4.0; the SegFormer weights derive from NVIDIA's MiT-B2
+ImageNet weights and follow the [NVIDIA SegFormer license](https://github.com/NVlabs/SegFormer/blob/master/LICENSE)
+(non-commercial use).
 
 ## Citation
 
