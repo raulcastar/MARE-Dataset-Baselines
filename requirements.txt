@@ -5,3 +5,4 @@ tqdm
 pillow
 numpy
 matplotlib
+brotli>=1.2.0           # httpx2 (via huggingface_hub) needs process(output_buffer_limit=); the base image has 1.1
